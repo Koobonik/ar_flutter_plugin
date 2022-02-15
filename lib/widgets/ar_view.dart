@@ -233,16 +233,17 @@ class _ARViewState extends State<ARView> {
       case (PermissionStatus
           .permanentlyDenied): //Android-specific: User needs to open Settings to give permissions
         {
-          return Center(
-              child: Column(
-            children: [
-              Text(permissionPromptDescription),
-              ElevatedButton(
-                  child: Text(permissionPromptButtonText),
-                  onPressed: () async =>
-                      {await requestCameraPermissionFromSettings()})
-            ],
-          ));
+          return SizedBox.shrink();
+          // return Center(
+          //     child: Column(
+          //   children: [
+          //     Text(permissionPromptDescription),
+          //     ElevatedButton(
+          //         child: Text(permissionPromptButtonText),
+          //         onPressed: () async =>
+          //             {await requestCameraPermissionFromSettings()})
+          //   ],
+          // ));
         }
       case (PermissionStatus.restricted):
         {
