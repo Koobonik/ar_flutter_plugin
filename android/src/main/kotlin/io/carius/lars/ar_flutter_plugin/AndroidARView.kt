@@ -454,7 +454,9 @@ internal class AndroidARView(
         try {
             arSceneView.session?.close()
             arSceneView.destroy()
-            arSceneView.scene?.removeOnUpdateListener(sceneUpdateListener)
+            if(sceneUpdateListener != null){
+                arSceneView.scene?.removeOnUpdateListener(sceneUpdateListener)
+            }
             arSceneView.scene?.removeOnPeekTouchListener(onNodeTapListener)
         }catch (e : Exception){
             e.printStackTrace();
