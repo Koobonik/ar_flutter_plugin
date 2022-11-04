@@ -16,10 +16,11 @@ flutter pub add ar_flutter_plugin
 ```
 
 Or manually add this to your `pubspec.yaml` file (and run `flutter pub get`):
+# ar_flutter_plugin package extension
 
 ```yaml
 dependencies:
-  ar_flutter_plugin: ^0.6.4
+  ar_flutter_plugin: ^0.7.2
 ```
 
 ### Importing
@@ -56,7 +57,7 @@ If you have problems with permissions on iOS (e.g. with the camera view not show
           'PERMISSION_SENSORS=1',
 
           ## dart: PermissionGroup.bluetooth
-          'PERMISSION_BLUETOOTH=1',´
+          'PERMISSION_BLUETOOTH=1',
 
           # add additional permission groups if required
         ]
@@ -92,3 +93,4 @@ Contributions to this plugin are very welcome. To contribute code and discuss id
 This is a rough sketch of the architecture the plugin implements:
 
 ![ar_plugin_architecture](./AR_Plugin_Architecture_highlevel.svg)
+

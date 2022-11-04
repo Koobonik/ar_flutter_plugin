@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.7.2
+* Fixes missing texturing on iOS
+
+## 0.7.1
+* Adds config to fix iOS cloud anchors not being able to upload
+
+## 0.7.0
+* Adds support to calculate distance between device and anchor and distance between two anchors
+
+## 0.6.5
+* Fixes the 'addNode' function to return true when a node is added to an anchor.
+
 ## 0.6.4
 * Flutter 3 compatibility
 

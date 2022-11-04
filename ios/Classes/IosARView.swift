@@ -81,6 +81,20 @@ class IosARView: NSObject, FlutterPlatformView, ARSCNViewDelegate, UIGestureReco
                 //result(nil)
                 initializeARView(arguments: arguments!, result: result)
                 break
+            case "getCameraPose":
+                if let cameraPose = sceneView.session.currentFrame?.camera.transform {
+                    result(serializeMatrix(cameraPose))
+                } else {
+                    result(FlutterError())
+                }
+                break
+            case "getAnchorPose":
+            if let cameraPose = anchorCollection[arguments?["anchorId"] as! String]?.transform {
+                    result(serializeMatrix(cameraPose))
+                } else {
+                    result(FlutterError())
+                }
+                break
             case "snapshot":
                 // call the SCNView Snapshot method and return the Image
                 let snapshotImage = sceneView.snapshot()
@@ -171,6 +185,9 @@ class IosARView: NSObject, FlutterPlatformView, ARSCNViewDelegate, UIGestureReco
                 arcoreSession = try! GARSession.session()
 
                 if (arcoreSession != nil){
+                    let configuration = GARSessionConfiguration();
+                    configuration.cloudAnchorMode = .enabled;
+                    arcoreSession?.setConfiguration(configuration, error: nil);
                     if let token = JWTGenerator().generateWebToken(){
                         arcoreSession!.setAuthToken(token)
                         
@@ -213,6 +230,7 @@ class IosARView: NSObject, FlutterPlatformView, ARSCNViewDelegate, UIGestureReco
     func initializeARView(arguments: Dictionary<String,Any>, result: FlutterResult){
         // Set plane detection configuration
         self.configuration = ARWorldTrackingConfiguration()
+        self.configuration.environmentTexturing = .automatic
         if let planeDetectionConfig = arguments["planeDetectionConfig"] as? Int {
             switch planeDetectionConfig {
                 case 1: 
@@ -371,6 +389,7 @@ class IosARView: NSObject, FlutterPlatformView, ARSCNViewDelegate, UIGestureReco
                                     if let anchor = self.anchorCollection[anchorName]{
                                         // Attach node to the top-level node of the specified anchor
                                         self.sceneView.node(for: anchor)?.addChildNode(node)
+                                        promise(.success(true))
                                     } else {
                                         promise(.success(false))
                                     }
@@ -402,6 +421,7 @@ class IosARView: NSObject, FlutterPlatformView, ARSCNViewDelegate, UIGestureReco
                                         if let anchor = self.anchorCollection[anchorName]{
                                             // Attach node to the top-level node of the specified anchor
                                             self.sceneView.node(for: anchor)?.addChildNode(node)
+                                            promise(.success(true))
                                         } else {
                                             promise(.success(false))
                                         }
@@ -435,6 +455,7 @@ class IosARView: NSObject, FlutterPlatformView, ARSCNViewDelegate, UIGestureReco
                                     if let anchor = self.anchorCollection[anchorName]{
                                         // Attach node to the top-level node of the specified anchor
                                         self.sceneView.node(for: anchor)?.addChildNode(node)
+                                        promise(.success(true))
                                     } else {
                                         promise(.success(false))
                                     }
@@ -467,6 +488,7 @@ class IosARView: NSObject, FlutterPlatformView, ARSCNViewDelegate, UIGestureReco
                                     if let anchor = self.anchorCollection[anchorName]{
                                         // Attach node to the top-level node of the specified anchor
                                         self.sceneView.node(for: anchor)?.addChildNode(node)
+                                        promise(.success(true))
                                     } else {
                                         promise(.success(false))
                                     }
