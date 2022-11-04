@@ -457,7 +457,7 @@ internal class AndroidARView(
 //            if(sceneUpdateListener != null){
 //                arSceneView.scene?.removeOnUpdateListener(sceneUpdateListener)
 //            }
-            arSceneView.scene?.removeOnPeekTouchListener(onNodeTapListener)
+//            arSceneView.scene?.removeOnPeekTouchListener(onNodeTapListener)
         }catch (e : Exception){
             e.printStackTrace();
         }
