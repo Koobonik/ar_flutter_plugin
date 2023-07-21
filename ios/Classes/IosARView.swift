@@ -20,7 +20,7 @@ class IosARView: NSObject, FlutterPlatformView, ARSCNViewDelegate, UIGestureReco
     var anchorCollection = [String: ARAnchor]() //Used to bookkeep all anchors created by Flutter calls
     
 //     private var cloudAnchorHandler: CloudAnchorHandler? = nil
-    private var arcoreSession: GARSession? = nil
+//     private var arcoreSession: GARSession? = nil
     private var arcoreMode: Bool = false
     private var configuration: ARWorldTrackingConfiguration!
     private var tappedPlaneAnchorAlignment = ARPlaneAnchor.Alignment.horizontal // default alignment
@@ -363,15 +363,15 @@ class IosARView: NSObject, FlutterPlatformView, ARSCNViewDelegate, UIGestureReco
         trackedPlanes.removeValue(forKey: anchor.identifier)
     }
     
-    func session(_ session: ARSession, didUpdate frame: ARFrame) {
-        if (arcoreMode) {
-            do {
-                try arcoreSession!.update(frame)
-            } catch {
-                print(error)
-            }
-        }
-    }
+//     func session(_ session: ARSession, didUpdate frame: ARFrame) {
+//         if (arcoreMode) {
+//             do {
+//                 try arcoreSession!.update(frame)
+//             } catch {
+//                 print(error)
+//             }
+//         }
+//     }
 
     func addNode(dict_node: Dictionary<String, Any>, dict_anchor: Dictionary<String, Any>? = nil) -> Future<Bool, Never> {
 
